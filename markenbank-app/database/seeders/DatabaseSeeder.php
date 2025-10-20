@@ -52,8 +52,8 @@ class DatabaseSeeder extends Seeder
         // Create bank accounts for user1 (USD)
         $account1 = BankAccount::create([
             'user_id' => $user1->id,
-            'account_number' => 'ACC' . str_pad($user1->id, 10, '0', STR_PAD_LEFT),
-            'iban' => 'FR76' . rand(10000000000000000000, 99999999999999999999),
+            'account_number' => generateAccountNumber($user1->id),
+            'iban' => generateIban(),
             'currency' => 'USD',
             'balance' => 1000.00,
             'status' => 'active',
@@ -62,8 +62,8 @@ class DatabaseSeeder extends Seeder
         // Create bank accounts for user1 (EUR)
         $account2 = BankAccount::create([
             'user_id' => $user1->id,
-            'account_number' => 'ACC' . str_pad($user1->id + 100, 10, '0', STR_PAD_LEFT),
-            'iban' => 'FR76' . rand(10000000000000000000, 99999999999999999999),
+            'account_number' => generateAccountNumber($user1->id + 100),
+            'iban' => generateIban(),
             'currency' => 'EUR',
             'balance' => 500.00,
             'status' => 'active',
@@ -72,8 +72,8 @@ class DatabaseSeeder extends Seeder
         // Create bank account for user2 (XOF)
         $account3 = BankAccount::create([
             'user_id' => $user2->id,
-            'account_number' => 'ACC' . str_pad($user2->id, 10, '0', STR_PAD_LEFT),
-            'iban' => 'FR76' . rand(10000000000000000000, 99999999999999999999),
+            'account_number' => generateAccountNumber($user2->id),
+            'iban' => generateIban(),
             'currency' => 'XOF',
             'balance' => 250000.00,
             'status' => 'active',
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'amount' => 500.00,
             'currency' => 'USD',
             'status' => 'completed',
-            'reference' => Transaction::generateReference(),
+            'reference' => generateTransactionRef(),
             'meta' => ['description' => 'Initial deposit'],
         ]);
 
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
             'amount' => 100.00,
             'currency' => 'USD',
             'status' => 'completed',
-            'reference' => Transaction::generateReference(),
+            'reference' => generateTransactionRef(),
             'meta' => ['description' => 'Transfer to savings'],
         ]);
 
@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
         VirtualCard::create([
             'user_id' => $user1->id,
             'bank_account_id' => $account1->id,
-            'card_number_masked' => VirtualCard::generateMaskedNumber(),
+            'card_number_masked' => maskCardNumber(generateCardNumber()),
             'card_expiry' => '12/26',
             'card_cvv_masked' => '***',
             'status' => 'active',
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
         VirtualCard::create([
             'user_id' => $user2->id,
             'bank_account_id' => $account3->id,
-            'card_number_masked' => VirtualCard::generateMaskedNumber(),
+            'card_number_masked' => maskCardNumber(generateCardNumber()),
             'card_expiry' => '06/27',
             'card_cvv_masked' => '***',
             'status' => 'pending',
