@@ -1,0 +1,1225 @@
+{
+    "title": "Application web bancaire - Banque en ligne (Laravel + Bootstrap + Filament)",
+    "summary": "Prompt détaillé pour générer un MVC fonctionnel d'une banque en ligne : landing page animée, pages d'authentification, dashboard client & admin, gestion multi-devises, recharges (IBAN / Paypal / cryptos), cartes virtuelles, profils, et administration complète via Filament. Toutes les pages et fonctionnalités sont dynamiques (liaison base de données) et configurables côté admin. Utiliser Laravel, Filament, Bootstrap 5+, FontAwesome et librairies JS d'animation.",
+    "nom_application": "Marken bank",
+    "tone_and_style": {
+    "lang": "fr",
+    "voice": "génération Z, motivant, conversationnel mais pro",
+    "notes_for_devs": "Réponses concises, UI moderne, animations subtiles, interactions fluides. Prioriser accessibilité et sécurité."
+    },
+    "objectives": [
+    "Fournir un MVC web complet et fonctionnel d'une banque en ligne (MVP) connecté à une base de données.",
+    "Utiliser Laravel pour backend, Filament pour admin, Bootstrap + JS pour UI & animations.",
+    "Rendre toutes les pages et fonctionnalités dynamiques et configurables via l'admin Filament."
+    ],
+    "tech_stack": {
+    "backend": "Laravel >=10",
+    "database": "MySQL / MariaDB (avec migrations et seeders)",
+    "admin": "Filament Admin (latest stable)",
+    "frontend": "Blade + Bootstrap 5 (JS), Alpine.js (optionnel pour micro-interactions)",
+    "icons": "FontAwesome",
+    "crypto_libs": "bibliothèque d'abstraction pour adresses et confirmations (ex: coinpayments / libraries as placeholders)",
+    "payments": "PayPal SDK (sandbox + live), adaptation pour Webhooks",
+    "auth": "Laravel Breeze or Jetstream (adapté) + 2FA optionnel",
+    "queues": "Laravel Queues (Redis) pour traitement asynchrone des recharges et notifications",
+    "storage": "Local / S3 compatible pour avatars et documents",
+    "notifications": "Mail (SMTP), Notifications Filament, SMS adapter placeholder"
+    },
+    "ux_ui_requirements": {
+    "landing": "Design moderne, hero animé (particle / simple parallax), CTA clair (Ouvrir un compte), sections: features, tarifs, sécurité, FAQ, contact, footer.",
+    "auth": "Pages login & register stylées, register = ouverture de compte bancaire (formulaire KYC minimal), validation côté client et serveur.",
+    "dashboard": "Client dashboard responsive, cartes d'information (solde, transactions récentes, IBAN, actions rapides), switch multi-devises, actions en un clic.",
+    "admin": "Tableaux de bord Filament, ressources CRUD pour utilisateurs, comptes, recharges, cartes virtuelles, logs, config API.",
+    "animations": "Bootstrap transitions + small JS animations (no heavy frameworks). Utiliser AOS or simple CSS animations + Bootstrap modal animations.",
+    "design_tokens": "Palette moderne (2-3 couleurs), typographie lisible, spacing cohérent, composants réutilisables."
+    },
+    "pages": [
+    {
+    "name": "Landing",
+    "path": "/",
+    "description": "Hero animé, features, CTA Ouvrir un compte, témoignages, FAQ, footer. Intégrer micro-animations, CTA en sticky header."
+    },
+    {
+    "name": "Auth - Login",
+    "path": "/login",
+    "description": "Login simple + option 'connexion via email / phone', 'mot de passe oublié', 2FA optional."
+    },
+    {
+    "name": "Auth - Register / Open Bank Account",
+    "path": "/register",
+    "description": "Formulaire KYC minimal: nom, prénom, date naissance, adresse, pièce identité (upload), email, phone; choix devise principale; génération automatique d'un numéro de compte unique."
+    },
+    {
+    "name": "Client Dashboard - Home",
+    "path": "/dashboard",
+    "description": "Vue d'ensemble: soldes multi-devises, dernieres transactions, boutons rapides (Transférer, Recharger, Demander Carte virtuelle), notifications."
+    },
+    {
+    "name": "Account Details",
+    "path": "/dashboard/account/{account_id}",
+    "description": "IBAN, numéro de compte, historique de transactions filtrable, export CSV, réglages du compte (activer/désactiver)."
+    },
+    {
+    "name": "Profile",
+    "path": "/dashboard/profile",
+    "description": "Afficher & modifier profile, upload avatar (cropper), changement mot de passe, préférences (notifications)."
+    },
+    {
+    "name": "Add / Manage Accounts (multi-devises)",
+    "path": "/dashboard/accounts",
+    "description": "Ajouter un compte interne dans une autre devise (génération compte virtuel), gestion des comptes."
+    },
+    {
+    "name": "Virtual Card",
+    "path": "/dashboard/cards",
+    "description": "Souscrire à une carte virtuelle: formulaire, génération de carte virtuelle (numéro masqué), statut (pending, active), possibilité de geler/supprimer."
+    },
+    {
+    "name": "Top-up / Recharges",
+    "path": "/dashboard/topup",
+    "description": "Choix méthode: IBAN (virement externe), Crypto (liste dynamique), PayPal. Formulaire de recharge, upload preuve si nécessaire. Recharge marquée pending until admin confirmation."
+    },
+    {
+    "name": "Transactions",
+    "path": "/dashboard/transactions",
+    "description": "Liste complète filtrable (date, montant, devise, type). Détails d'une transaction."
+    },
+    {
+    "name": "Admin Dashboard (Filament)",
+    "path": "/admin",
+    "description": "Ressources Filament: Users, BankAccounts, Transactions, Topups, Cards, Settings, API Keys, Logs, KYC documents, Notifications."
+    },
+    {
+    "name": "Admin - Recharge Approvals",
+    "path": "/admin/recharges",
+    "description": "Liste des recharges en attente, possibilité d'approuver/rejeter, ajouter notes, déclencher crédits sur compte (via transaction interne)."
+    },
+    {
+    "name": "Admin - Settings",
+    "path": "/admin/settings",
+    "description": "Configurer API PayPal, adresses crypto, IBAN de dépôt, fees, limites, activation méthodes de paiement, email templates."
+    },
+    {
+    "name": "Support / Help Center",
+    "path": "/help",
+    "description": "FAQ, contact form, ticketing basique."
+    },
+    {
+    "name": "Legal Pages",
+    "path": "/legal/*",
+    "description": "CGU, Politique de confidentialité, mentions légales, conditions tarifaires."
+    }
+    ],
+    "features": [
+    "Compte utilisateur avec numéro de compte unique et IBAN généré (format demo)",
+    "Multi-devises par utilisateur (comptes séparés par devise)",
+    "Transactions internes (transfert entre comptes) et externes (virement IBAN)",
+    "Recharge: IBAN, PayPal, Crypto (liste configurable) — toutes recharges nécessitent confirmation admin",
+    "Cartes virtuelles: demande, génération, gestion (activer/désactiver), intégration simplifiée",
+    "Profil utilisateur complet (modifier, avatar upload with cropper)",
+    "KYC document upload & review (admin)",
+    "Filament admin: CRUD complet + paramètres dynamiques",
+    "Notifications email (utilisateur & admin) + Filament notifications",
+    "Audit logs: toutes actions sensibles loggées",
+    "Export CSV / Excel pour transactions",
+    "Pagination & filtrage côté serveur (API) pour performances",
+    "Role-based access control (admin, support, auditor, user)",
+    "Rate limits & anti-fraud simple (suspicious activity flagging)"
+    ],
+    "database_schema": {
+    "tables": [
+    {
+    "name": "users",
+    "columns": {
+    "id": "bigint PK",
+    "name": "string",
+    "email": "string unique",
+    "phone": "string nullable",
+    "password": "string",
+    "avatar_path": "string nullable",
+    "is_verified": "boolean default false",
+    "role": "enum(user,admin,support,auditor) default user",
+    "created_at": "timestamp",
+    "updated_at": "timestamp"
+    }
+    },
+    {
+    "name": "bank_accounts",
+    "columns": {
+    "id": "bigint PK",
+    "user_id": "bigint FK users",
+    "account_number": "string unique",
+    "iban": "string nullable unique",
+    "currency": "string (ISO code)",
+    "balance": "decimal(20,8) default 0",
+    "status": "enum(active,blocked,closed)",
+    "metadata": "json nullable",
+    "created_at": "timestamp",
+    "updated_at": "timestamp"
+    }
+    },
+    {
+    "name": "transactions",
+    "columns": {
+    "id": "bigint PK",
+    "bank_account_id": "bigint FK bank_accounts",
+    "type": "enum(credit,debit,transfer,fee,topup)",
+    "amount": "decimal(20,8)",
+    "currency": "string",
+    "status": "enum(pending,completed,failed,refunded)",
+    "reference": "string unique",
+    "meta": "json nullable",
+    "created_at": "timestamp",
+    "updated_at": "timestamp"
+    }
+    },
+    {
+    "name": "topups",
+    "columns": {
+    "id": "bigint PK",
+    "user_id": "bigint FK users",
+    "bank_account_id": "bigint FK bank_accounts nullable",
+    "method": "enum(iban,paypal,crypto)",
+    "amount": "decimal(20,8)",
+    "currency": "string",
+    "crypto_currency": "string nullable",
+    "wallet_address": "string nullable",
+    "status": "enum(pending,approved,rejected)",
+    "admin_note": "text nullable",
+    "proof_path": "string nullable",
+    "created_at": "timestamp",
+    "updated_at": "timestamp"
+    }
+    },
+    {
+    "name": "virtual_cards",
+    "columns": {
+    "id": "bigint PK",
+    "user_id": "bigint FK users",
+    "bank_account_id": "bigint FK bank_accounts",
+    "card_number_masked": "string",
+    "card_expiry": "string",
+    "card_cvv_masked": "string",
+    "status": "enum(pending,active,frozen,cancelled)",
+    "metadata": "json nullable",
+    "created_at": "timestamp",
+    "updated_at": "timestamp"
+    }
+    },
+    {
+    "name": "kyc_documents",
+    "columns": {
+    "id": "bigint PK",
+    "user_id": "bigint FK users",
+    "type": "string",
+    "file_path": "string",
+    "status": "enum(pending,verified,rejected)",
+    "reviewed_by": "bigint FK users nullable",
+    "review_notes": "text nullable",
+    "created_at": "timestamp",
+    "updated_at": "timestamp"
+    }
+    },
+    {
+    "name": "settings",
+    "columns": {
+    "id": "bigint PK",
+    "key": "string unique",
+    "value": "json",
+    "group": "string nullable",
+    "created_at": "timestamp",
+    "updated_at": "timestamp"
+    }
+    },
+    {
+    "name": "audit_logs",
+    "columns": {
+    "id": "bigint PK",
+    "user_id": "bigint FK users nullable",
+    "action": "string",
+    "auditable_type": "string nullable",
+    "auditable_id": "bigint nullable",
+    "meta": "json nullable",
+    "created_at": "timestamp"
+    }
+    }
+    ]
+    },
+    "api_endpoints": [
+    {
+    "method": "POST",
+    "route": "/api/auth/register",
+    "description": "Créer utilisateur + créer compte bancaire principal (devise choisie) + trigger email verification"
+    },
+    {
+    "method": "POST",
+    "route": "/api/auth/login",
+    "description": "Authentification, retourne token (sanctum) + profile"
+    },
+    {
+    "method": "GET",
+    "route": "/api/user",
+    "description": "Récupérer profil connecté"
+    },
+    {
+    "method": "PUT",
+    "route": "/api/user/profile",
+    "description": "Modifier profil et avatar upload"
+    },
+    {
+    "method": "GET",
+    "route": "/api/accounts",
+    "description": "Lister comptes utilisateur (multi-devise)"
+    },
+    {
+    "method": "POST",
+    "route": "/api/accounts",
+    "description": "Ajouter un compte dans une devise"
+    },
+    {
+    "method": "GET",
+    "route": "/api/accounts/{id}/transactions",
+    "description": "Transactions filtrables (date range, type, status)"
+    },
+    {
+    "method": "POST",
+    "route": "/api/topups",
+    "description": "Créer recharge (IBAN, PayPal, Crypto) — status pending"
+    },
+    {
+    "method": "POST",
+    "route": "/api/topups/{id}/confirm",
+    "description": "Endpoint admin pour approuver/rejeter recharge -> crée transaction credit"
+    },
+    {
+    "method": "POST",
+    "route": "/api/cards",
+    "description": "Demande carte virtuelle"
+    },
+    {
+    "method": "POST",
+    "route": "/api/transactions/transfer",
+    "description": "Transfert interne entre comptes"
+    },
+    {
+    "method": "GET",
+    "route": "/api/admin/reports/transactions",
+    "description": "Rapports filtrables (admin)"
+    }
+    ],
+    "filament_resources": [
+    {
+    "resource": "UserResource",
+    "fields": ["id","name","email","phone","role","is_verified","avatar","created_at"],
+    "relations": ["bankAccounts","kycDocuments"],
+    "actions": ["impersonate","export"]
+    },
+    {
+    "resource": "BankAccountResource",
+    "fields": ["id","user","account_number","iban","currency","balance","status","metadata"],
+    "actions": ["credit_manual","debit_manual","freeze","unfreeze"]
+    },
+    {
+    "resource": "TopupResource",
+    "fields": ["id","user","method","amount","currency","status","proof","admin_note"],
+    "actions": ["approve","reject","download_proof"]
+    },
+    {
+    "resource": "VirtualCardResource",
+    "fields": ["id","user","bank_account","card_number_masked","status"],
+    "actions": ["activate","freeze","cancel"]
+    },
+    {
+    "resource": "SettingsResource",
+    "fields": ["key","value","group"],
+    "ui": "Form builder for JSON fields"
+    },
+    {
+    "resource": "KycDocumentResource",
+    "fields": ["id","user","type","file","status","reviewed_by","review_notes"],
+    "actions": ["verify","reject"]
+    },
+    {
+    "resource": "AuditLogResource",
+    "readonly": true,
+    "filters": ["date","user","action"]
+    }
+    ],
+    "bootstrap_components_and_js": {
+    "components": [
+    "Navbar (sticky, transparent -> solid on scroll)",
+    "Hero with animation (particles / Lottie / subtle parallax)",
+    "Cards & grid for dashboard metrics",
+    "Modals (Bootstrap modal) for quick actions (top-up, transfer)",
+    "Dropdowns, tooltips, toasts (for notif)",
+    "Accordion for FAQ",
+    "Responsive tables with server-side pagination"
+    ],
+    "animations": [
+    "Use AOS or simple CSS keyframes for scroll animations",
+    "Use Bootstrap collapse/transition for smoothness",
+    "Use Lottie for hero animation (optional)",
+    "Microinteractions with Alpine.js (optional) or vanilla JS"
+    ]
+    },
+    "third_party_integrations": {
+    "paypal": {
+    "notes": "Configurer client_id & secret via Settings. Utiliser webhooks pour confirmer paiements. Fournir sandbox support."
+    },
+    "crypto": {
+    "notes": "Lister cryptos via settings (ex: BTC, ETH, USDT). Admin ajoute adresses de réception. Integrate placeholders or a testnet gateway. Require manual admin confirmation."
+    },
+    "iban_generation": {
+    "notes": "Demo: generate IBAN-like strings (not real). For production, integrate banking partner API."
+    },
+    "email": {
+    "notes": "SMTP settings in env; use queue for sending mails."
+    },
+    "storage": {
+    "notes": "S3 support via Filesystem config; local fallback"
+    }
+    },
+    "admin_settings_and_configuration": {
+    "payment_methods": "Activer/désactiver PayPal, Crypto, IBAN",
+    "fees": "Configurer frais fixes/percent par méthode et par devise",
+    "limits": "Montant min/max par méthode / par utilisateur",
+    "crypto_addresses": "Liste editable d'adresses crypto par devise",
+    "paypal_keys": "Client ID / Secret par environment",
+    "iban_deposit_details": "IBAN(s) à afficher pour les dépôts externes",
+    "email_templates": "Templates modifiables (Markdown/HTML)",
+    "kyc_policies": "Champs KYC configurables"
+    },
+    "security_and_compliance": {
+    "auth": "Sanctum / Laravel Passport for API tokens; enforce password policy",
+    "2fa": "Optionnel (TOTP) pour actions sensibles",
+    "input_validation": "Server-side validation for all inputs",
+    "file_uploads": "Virus scanning placeholder, size limits, allowed mime types",
+    "logging": "Audit logs for money-related operations",
+    "rate_limiting": "Throttle key endpoints",
+    "encryption": "Encrypt sensitive fields at rest (e.g. card data masked & tokenized)",
+    "gdpr": "Cookie consent + data export/delete endpoints"
+    },
+    "testing_and_quality": {
+    "unit_tests": "Models, services (topup processing, transactions)",
+    "feature_tests": "Auth flows, topup request & admin approval, transfers",
+    "integration_tests": "PayPal webhook simulation, file uploads",
+    "manual_tests": "KYC flow, admin approvals, UI responsiveness",
+    "test_data": "Seeders for users, accounts, transactions, topups"
+    },
+    "deliverables": [
+    "Repository with Laravel project (migrations, seeders, factories)",
+    "Filament resources ready for admin use",
+    "Blade templates + Bootstrap assets + sample animations",
+    "OpenAPI docs for APIs (basic)",
+    "Readme: installation, env vars, running queues, seeding",
+    "Postman collection (or equivalent) for API endpoints",
+    "Demo credentials for admin & sample users"
+    ],
+    "seed_data_examples": {
+    "admin_user": {
+    "email": "admin@example.com
+    ",
+    "password": "password123 (seed only)",
+    "role": "admin"
+    },
+    "sample_users": [
+    {"email":"user1@example.com
+    ","balance_demo":1000,"currency":"USD"},
+    {"email":"user2@example.com
+    ","balance_demo":250000,"currency":"XOF"}
+    ],
+    "crypto_addresses": [
+    {"currency":"BTC","address":"test-btc-address"},
+    {"currency":"ETH","address":"test-eth-address"}
+    ]
+    },
+    "env_variables_required": [
+    "APP_NAME",
+    "APP_ENV",
+    "APP_URL",
+    "DB_CONNECTION",
+    "DB_HOST",
+    "DB_PORT",
+    "DB_DATABASE",
+    "DB_USERNAME",
+    "DB_PASSWORD",
+    "MAIL_MAILER",
+    "MAIL_HOST",
+    "MAIL_PORT",
+    "MAIL_USERNAME",
+    "MAIL_PASSWORD",
+    "PAYPAL_CLIENT_ID",
+    "PAYPAL_SECRET",
+    "AWS_ACCESS_KEY_ID (optional)",
+    "AWS_SECRET_ACCESS_KEY (optional)",
+    "AWS_BUCKET (optional)",
+    "QUEUE_CONNECTION (redis recommended)"
+    ],
+    "run_instructions_summary": {
+    "steps": [
+    "composer install",
+    "cp .env.example .env && set env variables",
+    "php artisan key:generate",
+    "php artisan migrate --seed",
+    "npm install && npm run build (or vite build)",
+    "php artisan storage:link",
+    "php artisan queue:work (for processing approvals & emails)"
+    ]
+    },
+    "acceptance_criteria": [
+    "Un utilisateur peut s'inscrire, se connecter et voir son dashboard avec au moins un compte et solde seedé.",
+    "Un utilisateur peut initier une recharge (topup) par au moins une méthode et celle-ci reste en statut pending jusqu'à approbation admin.",
+    "L'admin via Filament peut approuver/rejeter une recharge et le solde du compte est mis à jour après approbation.",
+    "Les comptes multi-devises sont créés et visibles, et les transactions apparaissent avec date, type et statut.",
+    "Pages principales (landing, auth, dashboard, admin) sont responsives et utilisent Bootstrap + animations demandées.",
+    "Toutes routes importantes ont documentation API de base."
+    ],
+    "notes_for_implementation": {
+    "dynamiques": "Toutes listes, dropdowns, options (liste cryptos, méthodes de paiement, limits) doivent provenir de la table settings ou ressources Filament pour pouvoir être modifiées sans déploiement.",
+    "admin_confirmations": "Pour la sécurité, la logique de crédit après recharge doit être transactionnelle et logguée (DB transaction).",
+    "extensions_future": "Prévoir intégration PSD2 / open-banking, connecteurs bancaires réels, AML checks."
+    },
+    "final_comment": "Utilise ce JSON comme prompt maestro pour générer le projet (ou pour le transmettre à une équipe/dev AI). Si tu veux, je peux maintenant générer les migrations Laravel + seeders et les resources Filament basiques à partir de ce plan — dis simplement "Génère le code" et j'engage la création directe."
+    }
+    
+    - Ligne artistique à suivre.
+    
+    
+    {
+      "projet": {
+        "nom": "Banque en Ligne Moderne",
+        "concept_global": "Digital Trust & Fluidity",
+        "description": "Banque digitale de nouvelle génération - fusion entre sécurité bancaire traditionnelle et fluidité technologique",
+        "mots_cles": ["Confiance", "Transparence", "Innovation", "Accessibilité", "Sécurité élégante"]
+        "fonction_suplémentaire":"Bouton pour switcher de mode sombre et clair"
+      },
+      "identite_visuelle": {
+        "palettes_couleurs": {
+          "option_1_premium_dark": {
+            "nom": "Premium Dark Mode",
+            "recommande": true,
+            "couleurs": {
+              "primaire": {
+                "nom": "Bleu électrique",
+                "hex": "#0066FF",
+                "usage": "Confiance et technologie"
+              },
+              "secondaire": {
+                "nom": "Violet profond",
+                "hex": "#6C2BD9",
+                "usage": "Innovation et premium"
+              },
+              "accent": {
+                "nom": "Cyan lumineux",
+                "hex": "#00D9FF",
+                "usage": "Crypto et modernité"
+              },
+              "neutre_dark_1": {
+                "nom": "Gris ardoise foncé",
+                "hex": "#1A1D29",
+                "usage": "Background principal"
+              },
+              "neutre_dark_2": {
+                "nom": "Gris ardoise",
+                "hex": "#252A3A",
+                "usage": "Background secondaire"
+              },
+              "success": {
+                "nom": "Vert émeraude",
+                "hex": "#00D1A0",
+                "usage": "Validations et succès"
+              },
+              "alert": {
+                "nom": "Orange ambre",
+                "hex": "#FF8F3D",
+                "usage": "Alertes et avertissements"
+              }
+            }
+          },
+          "option_2_light_premium": {
+            "nom": "Light Premium",
+            "recommande": false,
+            "couleurs": {
+              "primaire": {
+                "nom": "Bleu royal",
+                "hex": "#0047AB",
+                "usage": "Éléments principaux"
+              },
+              "secondaire": {
+                "nom": "Or rosé",
+                "hex": "#F2C94C",
+                "usage": "Accents premium"
+              },
+              "fond": {
+                "nom": "Blanc cassé",
+                "hex": "#F8F9FD",
+                "usage": "Background"
+              },
+              "texte": {
+                "nom": "Gris charbon",
+                "hex": "#2D3748",
+                "usage": "Texte principal"
+              }
+            }
+          }
+        },
+        "typographie": {
+          "headings": {
+            "familles": ["Inter", "Poppins"],
+            "poids": ["Bold", "SemiBold"],
+            "caracteristiques": "Moderne et lisible avec hiérarchie claire"
+          },
+          "body": {
+            "familles": ["Inter", "Manrope"],
+            "poids": ["Regular", "Medium"],
+            "line_height": "1.6-1.8"
+          },
+          "accent_financier": {
+            "familles": ["JetBrains Mono", "IBM Plex Mono"],
+            "usage": "Montants et numéros de compte"
+          }
+        }
+      },
+      "animations_interactions": {
+        "landing_page": {
+          "hero_section": {
+            "elements": [
+              {
+                "nom": "Particules connectées",
+                "technologie": ["Three.js", "particles.js"],
+                "description": "Animation de particules en arrière-plan"
+              },
+              {
+                "nom": "Cards flottantes",
+                "effet": "Parallax subtil",
+                "description": "Cards montrant les fonctionnalités"
+              },
+              {
+                "nom": "Gradients morphing",
+                "type": "Animation continue"
+              },
+              {
+                "nom": "CTA",
+                "effets": ["Glow pulsant", "Hover interactif"]
+              },
+              {
+                "nom": "Scroll reveal",
+                "technologie": ["AOS.js", "GSAP ScrollTrigger"],
+                "type": "Progressif"
+              }
+            ]
+          },
+          "sections": {
+            "features": {
+              "elements": [
+                {
+                  "type": "Cards",
+                  "effet": "Flip 3D au hover"
+                },
+                {
+                  "type": "Icônes FontAwesome",
+                  "effet": "Animées"
+                }
+              ]
+            },
+            "stats": {
+              "elements": [
+                {
+                  "type": "Compteurs",
+                  "technologie": "CountUp.js"
+                }
+              ]
+            },
+            "testimonials": {
+              "elements": [
+                {
+                  "type": "Carousel",
+                  "technologie": "Swiper.js",
+                  "effet": "Glissement fluide"
+                }
+              ]
+            },
+            "footer": {
+              "elements": [
+                {
+                  "type": "Wave animation",
+                  "format": "SVG"
+                }
+              ]
+            }
+          }
+        },
+        "authentification": {
+          "design": {
+            "layout": "Split-screen",
+            "gauche": "Formulaire",
+            "droite": "Illustration/3D animée",
+            "style": "Glass-morphism pour les cards"
+          },
+          "interactions": [
+            {
+              "element": "Inputs",
+              "effets": ["Focus", "Validation"],
+              "type": "Micro-animations"
+            },
+            {
+              "element": "Loading states",
+              "type": "Skeleton screens"
+            },
+            {
+              "element": "Transition login/register",
+              "effets": ["Slide", "Fade"]
+            },
+            {
+              "element": "Password strength",
+              "type": "Indicator animé"
+            },
+            {
+              "element": "Validation temps réel",
+              "feedback": "Icônes succès/erreur"
+            },
+            {
+              "element": "2FA",
+              "type": "Animation code entry"
+            }
+          ]
+        },
+        "dashboard": {
+          "layout": {
+            "structure": "Sidebar + Topbar + Content Area",
+            "sidebar": {
+              "features": [
+                "Collapsible avec animation smooth",
+                "Active state avec barre colorée animée",
+                "Icônes FontAwesome avec hover effects",
+                "Dark/Light mode toggle animé"
+              ]
+            }
+          },
+          "elements_client": [
+            {
+              "nom": "Account Overview Card",
+              "components": [
+                {
+                  "type": "Solde principal",
+                  "effet": "Compteur animé"
+                },
+                {
+                  "type": "Graphique dépenses",
+                  "technologie": "Chart.js",
+                  "animation": true
+                },
+                {
+                  "type": "Quick actions",
+                  "style": "Floating action buttons"
+                },
+                {
+                  "type": "Style",
+                  "effet": "Glass-morphism avec backdrop blur"
+                }
+              ]
+            },
+            {
+              "nom": "Comptes Multiples",
+              "components": [
+                {
+                  "type": "Cards horizontales",
+                  "interaction": "Scrollables"
+                },
+                {
+                  "type": "Devise",
+                  "element": "Drapeau animé"
+                },
+                {
+                  "type": "Switch comptes",
+                  "transition": "Slide"
+                },
+                {
+                  "type": "Balance",
+                  "effet": "Animée lors du changement"
+                }
+              ]
+            },
+            {
+              "nom": "Carte Virtuelle",
+              "components": [
+                {
+                  "type": "Card 3D",
+                  "interaction": "Flip pour détails"
+                },
+                {
+                  "type": "Effet holographique",
+                  "cible": "Plastique de la carte"
+                },
+                {
+                  "type": "Numéros",
+                  "interaction": "Masqués avec reveal au clic"
+                },
+                {
+                  "type": "Animation génération",
+                  "trigger": "Création de carte"
+                }
+              ]
+            },
+            {
+              "nom": "Transactions",
+              "components": [
+                {
+                  "type": "Table",
+                  "effet": "Hover effects"
+                },
+                {
+                  "type": "Pagination",
+                  "options": ["Infinite scroll", "Pagination élégante"]
+                },
+                {
+                  "type": "Filtres",
+                  "interaction": "Dropdown animés"
+                },
+                {
+                  "type": "Status badges",
+                  "effet": "Pulse animation"
+                }
+              ]
+            },
+            {
+              "nom": "Recharge Section",
+              "components": [
+                {
+                  "type": "Tabs",
+                  "methodes": ["IBAN", "Crypto", "PayPal"]
+                },
+                {
+                  "type": "Crypto",
+                  "elements": ["QR code animé", "Copie adresse avec feedback"]
+                },
+                {
+                  "type": "Steps indicator",
+                  "usage": "Processus de recharge"
+                },
+                {
+                  "type": "Upload preuve",
+                  "interaction": "Drag & drop zone animée"
+                }
+              ]
+            },
+            {
+              "nom": "Profile",
+              "components": [
+                {
+                  "type": "Avatar upload",
+                  "features": ["Preview", "Crop"]
+                },
+                {
+                  "type": "Form inputs",
+                  "style": "Floating labels"
+                },
+                {
+                  "type": "Save button",
+                  "state": "Loading state"
+                },
+                {
+                  "type": "Success notification",
+                  "format": "Toast animé"
+                }
+              ]
+            }
+          ],
+          "admin_filament": {
+            "customisation": [
+              "Theme personnalisé avec couleurs du projet",
+              "Widgets avec statistiques temps réel",
+              "Charts interactifs (ApexCharts intégré)",
+              "Tables avec actions bulk animées",
+              "Modals de confirmation élégantes"
+            ],
+            "pages_specifiques": [
+              {
+                "nom": "Gestion Utilisateurs",
+                "features": ["Table avec filtres avancés"]
+              },
+              {
+                "nom": "Validation Recharges",
+                "features": ["Liste avec preview preuves", "Approve/reject"]
+              },
+              {
+                "nom": "Configuration Paiements",
+                "features": ["Forms pour API keys", "Adresses crypto", "IBAN"]
+              },
+              {
+                "nom": "Analytics",
+                "features": ["Dashboard avec métriques avancées"]
+              },
+              {
+                "nom": "Paramètres Système",
+                "features": ["Toggle features", "Limites", "Frais"]
+              }
+            ]
+          }
+        }
+      },
+      "effets_styles_speciaux": {
+        "micro_interactions": [
+          {
+            "element": "Button hover",
+            "effets": ["Scale", "Shadow elevation"]
+          },
+          {
+            "element": "Card hover",
+            "effets": ["Subtle lift", "Border glow"]
+          },
+          {
+            "element": "Input focus",
+            "effets": ["Border color transition", "Label float"]
+          },
+          {
+            "element": "Loading",
+            "type": "Skeleton screens",
+            "note": "Pas de spinners simples"
+          },
+          {
+            "element": "Success/Error",
+            "type": "Toast notifications avec icônes animées"
+          },
+          {
+            "element": "Drag & Drop",
+            "feedback": "Ghost element avec feedback visuel"
+          }
+        ],
+        "glassmorphism": {
+          "application": [
+            "Cards principales",
+            "Modals",
+            "Dropdowns",
+            "Navigation bars"
+          ],
+          "css": {
+            "backdrop_filter": "blur(12px)",
+            "background": "rgba(255, 255, 255, 0.1)",
+            "border": "1px solid rgba(255, 255, 255, 0.2)"
+          }
+        },
+        "gradients_animes": {
+          "application": [
+            "Hero backgrounds",
+            "CTA buttons",
+            "Card overlays",
+            "Loading states"
+          ]
+        }
+      },
+      "responsive_design": {
+        "breakpoints": {
+          "mobile": {
+            "max": "768px",
+            "layout": "Stack vertical",
+            "navigation": "Bottom navigation"
+          },
+          "tablet": {
+            "range": "768px-1024px",
+            "layout": "Sidebar collapsible"
+          },
+          "desktop": {
+            "min": "1024px",
+            "layout": "Full layout"
+          }
+        },
+        "animations_mobiles": {
+          "optimisation": "Réduites pour performance",
+          "interactions": "Touch optimisées",
+          "patterns": "Bottom sheet pour actions"
+        }
+      },
+      "stack_technique": {
+        "frontend": {
+          "frameworks_libraries": [
+            {
+              "nom": "Bootstrap 5",
+              "usage": "Grid & components"
+            },
+            {
+              "nom": "GSAP",
+              "usage": "Animations complexes"
+            },
+            {
+              "nom": "AOS",
+              "usage": "Scroll animations"
+            },
+            {
+              "nom": "Chart.js",
+              "usage": "Graphiques"
+            },
+            {
+              "nom": "Swiper.js",
+              "usage": "Carousels"
+            },
+            {
+              "nom": "FontAwesome 6",
+              "usage": "Icônes"
+            },
+            {
+              "nom": "Particles.js ou Three.js",
+              "usage": "Effets 3D/particules"
+            }
+          ]
+        },
+        "backend_laravel": {
+          "packages": [
+            {
+              "nom": "Filament 3",
+              "usage": "Panel admin"
+            },
+            {
+              "nom": "Livewire",
+              "usage": "Réactivité"
+            },
+            {
+              "nom": "Spatie Media Library",
+              "usage": "Upload fichiers"
+            },
+            {
+              "nom": "Laravel Cashier",
+              "usage": "Intégrations paiement",
+              "note": "Si nécessaire"
+            }
+          ]
+        }
+      },
+      "pages_supplementaires": [
+        {
+          "nom": "À Propos",
+          "contenu": "Histoire, mission, équipe",
+          "style": "Design storytelling"
+        },
+        {
+          "nom": "Services",
+          "contenu": "Détails des offres",
+          "style": "Cards interactives"
+        },
+        {
+          "nom": "Tarifs/Frais",
+          "contenu": "Pricing table transparent",
+          "style": "Table comparative"
+        },
+        {
+          "nom": "Sécurité",
+          "contenu": "Badges, certifications, explications",
+          "style": "Trust elements"
+        },
+        {
+          "nom": "Support/FAQ",
+          "contenu": "Questions fréquentes",
+          "style": "Accordions animés, chatbot"
+        },
+        {
+          "nom": "CGU/Mentions Légales",
+          "contenu": "Conditions générales",
+          "style": "Design propre mais formel"
+        },
+        {
+          "nom": "Contact",
+          "contenu": "Formulaire de contact",
+          "style": "Form + carte interactive"
+        },
+        {
+          "nom": "Blog/Actualités",
+          "contenu": "Articles et news",
+          "style": "Grid moderne avec images"
+        }
+      ],
+      "principes_coherence": {
+        "chaque_page_doit": [
+          "Partager la même palette de couleurs",
+          "Utiliser les mêmes patterns d'animation (timing, easing)",
+          "Avoir des espacements cohérents (système 8px)",
+          "Maintenir la hiérarchie typographique",
+          "Offrir un feedback visuel immédiat sur chaque action"
+        ],
+        "dynamisme": {
+          "configuration": "Tout configurable depuis l'admin",
+          "contenu": "Depuis la BDD (même blocs landing page)",
+          "settings": "Table pour configurations globales",
+          "media": "Media library pour toutes les images"
+        }
+      },
+      "fonctionnalites_principales": {
+        "utilisateur": [
+          {
+            "categorie": "Compte",
+            "features": [
+              "Numéro de compte unique",
+              "Informations compte bancaire",
+              "Gestion profile avec photo",
+              "Modification informations personnelles"
+            ]
+          },
+          {
+            "categorie": "Comptes multiples",
+            "features": [
+              "Ajout comptes avec différentes devises",
+              "Switch entre comptes",
+              "Vue consolidée"
+            ]
+          },
+          {
+            "categorie": "Carte virtuelle",
+            "features": [
+              "Souscription carte virtuelle",
+              "Visualisation détails carte",
+              "Gestion sécurité carte"
+            ]
+          },
+          {
+            "categorie": "Recharge",
+            "methodes": [
+              {
+                "type": "IBAN",
+                "description": "Virement bancaire",
+                "validation": "Admin"
+              },
+              {
+                "type": "Crypto",
+                "description": "Liste de cryptomonnaies à définir",
+                "validation": "Admin",
+                "elements": ["Adresse wallet", "QR code", "Confirmation blockchain"]
+              },
+              {
+                "type": "PayPal",
+                "description": "Paiement via PayPal",
+                "integration": "API PayPal"
+              }
+            ]
+          },
+          {
+            "categorie": "Transactions",
+            "features": [
+              "Historique complet",
+              "Filtres avancés",
+              "Export données",
+              "Recherche"
+            ]
+          }
+        ],
+        "admin": [
+          {
+            "categorie": "Gestion utilisateurs",
+            "features": [
+              "Liste complète utilisateurs",
+              "Détails compte utilisateur",
+              "Activation/Désactivation comptes",
+              "Gestion permissions"
+            ]
+          },
+          {
+            "categorie": "Validation recharges",
+            "features": [
+              "File d'attente recharges",
+              "Vérification preuves",
+              "Approve/Reject avec commentaires",
+              "Notifications automatiques"
+            ]
+          },
+          {
+            "categorie": "Configuration paiements",
+            "elements": [
+              {
+                "type": "PayPal",
+                "config": ["API Key", "Secret", "Mode (sandbox/live)"]
+              },
+              {
+                "type": "Crypto",
+                "config": ["Adresses wallets par crypto", "Confirmations requises"]
+              },
+              {
+                "type": "IBAN",
+                "config": ["IBAN de réception", "BIC", "Titulaire"]
+              }
+            ]
+          },
+          {
+            "categorie": "Paramètres système",
+            "features": [
+              "Frais et commissions",
+              "Limites de transaction",
+              "Devises supportées",
+              "Features toggles",
+              "Emails templates"
+            ]
+          },
+          {
+            "categorie": "Analytics",
+            "features": [
+              "Dashboard statistiques",
+              "Revenus et volumes",
+              "Utilisateurs actifs",
+              "Méthodes recharge populaires",
+              "Rapports exportables"
+            ]
+          }
+        ]
+      },
+      "base_de_donnees": {
+        "tables_principales": [
+          {
+            "nom": "users",
+            "description": "Utilisateurs du système"
+          },
+          {
+            "nom": "accounts",
+            "description": "Comptes bancaires (relation avec users)",
+            "fields_cles": ["account_number", "currency", "balance", "user_id"]
+          },
+          {
+            "nom": "virtual_cards",
+            "description": "Cartes virtuelles",
+            "relation": "account_id"
+          },
+          {
+            "nom": "transactions",
+            "description": "Toutes les transactions",
+            "types": ["deposit", "withdrawal", "transfer"]
+          },
+          {
+            "nom": "recharge_requests",
+            "description": "Demandes de recharge en attente",
+            "status": ["pending", "approved", "rejected"]
+          },
+          {
+            "nom": "payment_methods",
+            "description": "Méthodes de paiement disponibles",
+            "types": ["iban", "crypto", "paypal"]
+          },
+          {
+            "nom": "crypto_addresses",
+            "description": "Adresses crypto pour dépôts"
+          },
+          {
+            "nom": "settings",
+            "description": "Configuration système (key-value)"
+          },
+          {
+            "nom": "pages_content",
+            "description": "Contenu dynamique pages (CMS-like)"
+          }
+        ]
+      },
+      "securite": {
+        "mesures": [
+          "Authentification 2FA",
+          "Hashage passwords (bcrypt)",
+          "Validation côté serveur",
+          "CSRF protection",
+          "Rate limiting",
+          "Logs d'activité",
+          "Encryption données sensibles",
+          "SSL/TLS obligatoire",
+          "Sessions sécurisées",
+          "Confirmation email pour actions sensibles"
+        ]
+      }
+    }
+    
+    
+    
+    
+    

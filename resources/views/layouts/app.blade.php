@@ -12,7 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
     <!-- Vite Assets -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     
     @stack('styles')
 </head>

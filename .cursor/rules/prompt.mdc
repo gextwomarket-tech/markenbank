@@ -1,0 +1,4 @@
+---
+description: le prompte de base du projet est présent dans le fichier prompt_marken.json. Analyse tout le projet avant une modification afin de ne pas aller en contradiction avec le code actuel. Le projet utilise Laravel/Filament, vérifie donc composer.json et package.json.
+alwaysApply: true
+---
