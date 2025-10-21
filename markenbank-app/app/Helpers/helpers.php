@@ -116,3 +116,111 @@ if (!function_exists('getStatusBadge')) {
         };
     }
 }
+
+if (!function_exists('__t')) {
+    /**
+     * Get translation from database or JSON file
+     */
+    function __t(string $key, string $default = ''): string
+    {
+        $locale = session('locale', config('app.locale', 'fr'));
+        
+        // Try to get from database
+        $language = \App\Models\Language::where('code', $locale)
+            ->where('is_active', true)
+            ->first();
+        
+        if ($language && isset($language->translations[$key])) {
+            return $language->translations[$key];
+        }
+        
+        // Fallback to JSON file
+        $jsonPath = resource_path("lang/{$locale}.json");
+        if (file_exists($jsonPath)) {
+            $translations = json_decode(file_get_contents($jsonPath), true);
+            if (isset($translations[$key])) {
+                return $translations[$key];
+            }
+        }
+        
+        return $default ?: $key;
+    }
+}
+
+if (!function_exists('logActivity')) {
+    /**
+     * Log an activity in audit logs
+     */
+    function logActivity(string $action, $auditable = null, array $meta = []): void
+    {
+        \App\Models\AuditLog::create([
+            'user_id' => auth()->id(),
+            'action' => $action,
+            'auditable_type' => $auditable ? get_class($auditable) : null,
+            'auditable_id' => $auditable ? $auditable->id : null,
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent(),
+            'meta' => $meta,
+        ]);
+    }
+}
+
+if (!function_exists('logUserVisit')) {
+    /**
+     * Log user page visit
+     */
+    function logUserVisit(string $pageUrl, string $pageName): void
+    {
+        if (!auth()->check()) {
+            return;
+        }
+        
+        \App\Models\UserActivityLog::create([
+            'user_id' => auth()->id(),
+            'page_url' => $pageUrl,
+            'page_name' => $pageName,
+            'ip_address' => request()->ip(),
+            'visited_at' => now(),
+        ]);
+    }
+}
+
+if (!function_exists('getCurrencies')) {
+    /**
+     * Get available currencies
+     */
+    function getCurrencies(): array
+    {
+        return [
+            'USD' => ['name' => 'US Dollar', 'symbol' => '$', 'flag' => '🇺🇸'],
+            'EUR' => ['name' => 'Euro', 'symbol' => '€', 'flag' => '🇪🇺'],
+            'GBP' => ['name' => 'British Pound', 'symbol' => '£', 'flag' => '🇬🇧'],
+            'XOF' => ['name' => 'Franc CFA', 'symbol' => 'CFA', 'flag' => '🇸🇳'],
+            'XAF' => ['name' => 'Franc CFA Central', 'symbol' => 'FCFA', 'flag' => '🇨🇲'],
+            'CAD' => ['name' => 'Canadian Dollar', 'symbol' => 'C$', 'flag' => '🇨🇦'],
+            'CHF' => ['name' => 'Swiss Franc', 'symbol' => 'CHF', 'flag' => '🇨🇭'],
+            'JPY' => ['name' => 'Japanese Yen', 'symbol' => '¥', 'flag' => '🇯🇵'],
+        ];
+    }
+}
+
+if (!function_exists('getCountries')) {
+    /**
+     * Get available countries with codes
+     */
+    function getCountries(): array
+    {
+        return [
+            'FR' => ['name' => 'France', 'flag' => '🇫🇷'],
+            'US' => ['name' => 'United States', 'flag' => '🇺🇸'],
+            'GB' => ['name' => 'United Kingdom', 'flag' => '🇬🇧'],
+            'SN' => ['name' => 'Sénégal', 'flag' => '🇸🇳'],
+            'CI' => ['name' => 'Côte d\'Ivoire', 'flag' => '🇨🇮'],
+            'CM' => ['name' => 'Cameroun', 'flag' => '🇨🇲'],
+            'CA' => ['name' => 'Canada', 'flag' => '🇨🇦'],
+            'DE' => ['name' => 'Germany', 'flag' => '🇩🇪'],
+            'ES' => ['name' => 'Spain', 'flag' => '🇪🇸'],
+            'IT' => ['name' => 'Italy', 'flag' => '🇮🇹'],
+        ];
+    }
+}
