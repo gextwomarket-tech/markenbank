@@ -1,0 +1,40 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0066FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#6C2BD9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00D9FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Bank Building Base -->
+  <rect x="60" y="120" width="80" height="60" fill="url(#gradient1)" rx="4"/>
+  
+  <!-- Columns -->
+  <rect x="65" y="90" width="12" height="30" fill="url(#gradient1)" rx="2"/>
+  <rect x="85" y="90" width="12" height="30" fill="url(#gradient1)" rx="2"/>
+  <rect x="103" y="90" width="12" height="30" fill="url(#gradient1)" rx="2"/>
+  <rect x="123" y="90" width="12" height="30" fill="url(#gradient1)" rx="2"/>
+  
+  <!-- Roof/Pediment -->
+  <path d="M50 90 L100 50 L150 90 Z" fill="url(#gradient1)"/>
+  
+  <!-- Digital Element - Circuit Lines -->
+  <circle cx="100" y="40" r="25" fill="none" stroke="url(#gradient1)" stroke-width="3"/>
+  <circle cx="100" cy="40" r="8" fill="url(#gradient1)"/>
+  
+  <!-- Connection Points -->
+  <circle cx="75" cy="40" r="4" fill="#0066FF"/>
+  <circle cx="125" cy="40" r="4" fill="#00D9FF"/>
+  <circle cx="100" cy="15" r="4" fill="#6C2BD9"/>
+  <circle cx="100" cy="65" r="4" fill="#0066FF"/>
+  
+  <!-- Lines connecting -->
+  <line x1="75" y1="40" x2="92" y2="40" stroke="#0066FF" stroke-width="2"/>
+  <line x1="108" y1="40" x2="125" y2="40" stroke="#00D9FF" stroke-width="2"/>
+  <line x1="100" y1="15" x2="100" y2="32" stroke="#6C2BD9" stroke-width="2"/>
+  <line x1="100" y1="48" x2="100" y2="65" stroke="#0066FF" stroke-width="2"/>
+  
+  <!-- Letter M -->
+  <text x="100" y="165" font-family="Poppins, sans-serif" font-size="48" font-weight="700" fill="white" text-anchor="middle">M</text>
+</svg>

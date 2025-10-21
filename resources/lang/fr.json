@@ -1,0 +1,255 @@
+{
+    "app_name": "Marken Bank",
+    "tagline": "Votre banque digitale de confiance",
+    
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "services": "Services",
+        "pricing": "Tarifs",
+        "security": "Sécurité",
+        "contact": "Contact",
+        "blog": "Blog",
+        "login": "Connexion",
+        "register": "Ouvrir un compte",
+        "dashboard": "Tableau de bord"
+    },
+    
+    "hero": {
+        "title": "La banque <span class=\"text-gradient\">digitale</span> de nouvelle génération",
+        "subtitle": "Gérez vos finances en toute simplicité avec Marken Bank. Comptes multi-devises, cartes virtuelles, virements instantanés et bien plus.",
+        "cta_primary": "Ouvrir un compte",
+        "cta_secondary": "Découvrir",
+        "stats": {
+            "users": "Utilisateurs",
+            "countries": "Pays",
+            "satisfaction": "% Satisfaction"
+        }
+    },
+    
+    "auth": {
+        "login": "Connexion",
+        "register": "Inscription",
+        "email": "Adresse email",
+        "password": "Mot de passe",
+        "password_confirmation": "Confirmer le mot de passe",
+        "remember_me": "Se souvenir de moi",
+        "forgot_password": "Mot de passe oublié?",
+        "dont_have_account": "Vous n'avez pas de compte?",
+        "already_have_account": "Vous avez déjà un compte?",
+        "sign_in": "Se connecter",
+        "sign_up": "S'inscrire",
+        "logout": "Déconnexion",
+        "name": "Nom complet",
+        "phone": "Téléphone",
+        "address": "Adresse",
+        "city": "Ville",
+        "country": "Pays",
+        "postal_code": "Code postal",
+        "date_of_birth": "Date de naissance",
+        "currency": "Devise principale",
+        "identity_document": "Pièce d'identité",
+        "step_personal": "Informations personnelles",
+        "step_address": "Adresse",
+        "step_documents": "Documents",
+        "step_complete": "Finalisation",
+        "next": "Suivant",
+        "previous": "Précédent",
+        "submit": "Soumettre"
+    },
+    
+    "dashboard": {
+        "welcome": "Bienvenue",
+        "overview": "Vue d'ensemble",
+        "accounts": "Comptes",
+        "transactions": "Transactions",
+        "cards": "Cartes",
+        "topup": "Recharger",
+        "profile": "Profil",
+        "settings": "Paramètres",
+        "help": "Aide",
+        "balance": "Solde",
+        "total_balance": "Solde total",
+        "recent_transactions": "Transactions récentes",
+        "quick_actions": "Actions rapides",
+        "transfer": "Transférer",
+        "request_card": "Demander une carte",
+        "add_account": "Ajouter un compte",
+        "view_all": "Tout voir",
+        "no_transactions": "Aucune transaction",
+        "account_number": "Numéro de compte",
+        "iban": "IBAN",
+        "currency": "Devise",
+        "status": "Statut",
+        "created_at": "Créé le",
+        "actions": "Actions"
+    },
+    
+    "transactions": {
+        "title": "Transactions",
+        "all_transactions": "Toutes les transactions",
+        "type": "Type",
+        "amount": "Montant",
+        "date": "Date",
+        "reference": "Référence",
+        "status": "Statut",
+        "filter": "Filtrer",
+        "export": "Exporter",
+        "credit": "Crédit",
+        "debit": "Débit",
+        "transfer": "Transfert",
+        "fee": "Frais",
+        "topup": "Recharge",
+        "pending": "En attente",
+        "completed": "Complété",
+        "failed": "Échoué",
+        "refunded": "Remboursé"
+    },
+    
+    "topup": {
+        "title": "Recharger mon compte",
+        "select_method": "Choisir une méthode",
+        "iban": "Virement IBAN",
+        "crypto": "Cryptomonnaie",
+        "paypal": "PayPal",
+        "amount": "Montant",
+        "select_account": "Sélectionner un compte",
+        "select_crypto": "Sélectionner une crypto",
+        "wallet_address": "Adresse du wallet",
+        "upload_proof": "Télécharger une preuve",
+        "submit": "Soumettre la demande",
+        "success": "Demande de recharge envoyée avec succès",
+        "pending_approval": "En attente d'approbation",
+        "instructions": "Instructions",
+        "iban_instructions": "Effectuez un virement vers l'IBAN ci-dessous et téléchargez une preuve de paiement.",
+        "crypto_instructions": "Envoyez la cryptomonnaie à l'adresse ci-dessous et la transaction sera validée après confirmation sur la blockchain.",
+        "paypal_instructions": "Vous serez redirigé vers PayPal pour compléter le paiement."
+    },
+    
+    "cards": {
+        "title": "Cartes virtuelles",
+        "my_cards": "Mes cartes",
+        "request_card": "Demander une carte",
+        "card_number": "Numéro de carte",
+        "expiry": "Expiration",
+        "cvv": "CVV",
+        "status": "Statut",
+        "pending": "En attente",
+        "active": "Active",
+        "frozen": "Gelée",
+        "cancelled": "Annulée",
+        "freeze": "Geler",
+        "unfreeze": "Dégeler",
+        "cancel": "Annuler",
+        "reveal": "Révéler",
+        "hide": "Masquer"
+    },
+    
+    "profile": {
+        "title": "Mon profil",
+        "personal_info": "Informations personnelles",
+        "security": "Sécurité",
+        "preferences": "Préférences",
+        "update_avatar": "Modifier la photo",
+        "update_info": "Mettre à jour",
+        "change_password": "Changer le mot de passe",
+        "current_password": "Mot de passe actuel",
+        "new_password": "Nouveau mot de passe",
+        "notifications": "Notifications",
+        "email_notifications": "Notifications par email",
+        "language": "Langue",
+        "theme": "Thème",
+        "dark_mode": "Mode sombre",
+        "light_mode": "Mode clair"
+    },
+    
+    "features": {
+        "title": "Pourquoi choisir <span class=\"text-gradient\">Marken Bank</span> ?",
+        "subtitle": "Des fonctionnalités conçues pour simplifier votre vie financière",
+        "multi_currency": {
+            "title": "Multi-devises",
+            "description": "Gérez vos comptes en USD, EUR, GBP, CAD et XOF. Convertissez instantanément avec les meilleurs taux."
+        },
+        "virtual_cards": {
+            "title": "Cartes Virtuelles",
+            "description": "Créez des cartes virtuelles instantanément pour vos achats en ligne en toute sécurité."
+        },
+        "instant_transfers": {
+            "title": "Virements Instantanés",
+            "description": "Transférez de l'argent en quelques secondes vers n'importe quel compte Marken Bank."
+        },
+        "crypto_friendly": {
+            "title": "Crypto-friendly",
+            "description": "Rechargez vos comptes avec Bitcoin, Ethereum et autres cryptomonnaies."
+        },
+        "security": {
+            "title": "Sécurité Maximale",
+            "description": "Authentification 2FA, encryption SSL et surveillance 24/7 pour protéger vos fonds."
+        },
+        "analytics": {
+            "title": "Analytics Avancés",
+            "description": "Suivez vos dépenses avec des graphiques détaillés et des rapports personnalisés."
+        }
+    },
+    
+    "footer": {
+        "about": "À propos",
+        "services": "Services",
+        "legal": "Légal",
+        "support": "Support",
+        "terms": "Conditions d'utilisation",
+        "privacy": "Politique de confidentialité",
+        "cookies": "Politique de cookies",
+        "faq": "FAQ",
+        "contact_us": "Nous contacter",
+        "follow_us": "Suivez-nous",
+        "copyright": "© 2025 Marken Bank. Tous droits réservés.",
+        "theme_toggle": "Changer de thème"
+    },
+    
+    "admin": {
+        "dashboard": "Tableau de bord admin",
+        "users": "Utilisateurs",
+        "accounts": "Comptes",
+        "transactions": "Transactions",
+        "topups": "Recharges",
+        "cards": "Cartes",
+        "kyc": "KYC",
+        "settings": "Paramètres",
+        "logs": "Logs",
+        "languages": "Langues",
+        "approve": "Approuver",
+        "reject": "Rejeter",
+        "view": "Voir",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "statistics": "Statistiques",
+        "total_users": "Total utilisateurs",
+        "total_balance": "Solde total",
+        "pending_topups": "Recharges en attente",
+        "recent_activity": "Activité récente"
+    },
+    
+    "common": {
+        "save": "Enregistrer",
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "view": "Voir",
+        "close": "Fermer",
+        "search": "Rechercher",
+        "filter": "Filtrer",
+        "export": "Exporter",
+        "import": "Importer",
+        "upload": "Télécharger",
+        "download": "Télécharger",
+        "confirm": "Confirmer",
+        "yes": "Oui",
+        "no": "Non",
+        "loading": "Chargement...",
+        "error": "Erreur",
+        "success": "Succès",
+        "warning": "Avertissement",
+        "info": "Information"
+    }
+}

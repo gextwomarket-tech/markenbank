@@ -106,4 +106,12 @@ class User extends Authenticatable
     {
         return $this->is_verified;
     }
+
+    /**
+     * Get the activity logs for the user.
+     */
+    public function activityLogs()
+    {
+        return $this->hasMany(UserActivityLog::class);
+    }
 }
