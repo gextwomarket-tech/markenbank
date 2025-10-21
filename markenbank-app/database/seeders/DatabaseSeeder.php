@@ -142,8 +142,11 @@ class DatabaseSeeder extends Seeder
             'status' => 'pending',
         ]);
 
-        // Call settings seeder
+        // Call all seeders
         $this->call([
+            LanguageSeeder::class,
+            PaymentMethodSeeder::class,
+            CryptoAddressSeeder::class,
             SettingsSeeder::class,
         ]);
     }
