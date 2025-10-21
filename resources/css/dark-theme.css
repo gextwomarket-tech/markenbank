@@ -1,0 +1,94 @@
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+    --bg-dark-1: #1A1D29;
+    --bg-dark-2: #252A3A;
+    --bg-dark-3: #2F3548;
+    --text-primary: #FFFFFF;
+    --text-secondary: #E2E8F0;
+    --text-muted: #A0AEC0;
+    
+    /* Amélioration de la lisibilité */
+    --input-text: #FFFFFF;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.1);
+    
+    /* Contrastes améliorés */
+    --link-color: #60A5FA;
+    --link-hover: #93C5FD;
+    
+    /* Shadows pour le thème sombre */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    color: var(--input-text) !important;
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--bg-dark-2);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .table {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th {
+    border-color: var(--border-color);
+}
+
+/* Amélioration de la lisibilité des formulaires en mode sombre */
+[data-theme="dark"] .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 102, 255, 0.25);
+}
+
+/* Styles pour les éléments de navigation en mode sombre */
+[data-theme="dark"] .navbar {
+    background-color: var(--bg-dark-2);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--bg-dark-2);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+    background-color: var(--bg-dark-3);
+    color: var(--text-primary);
+}
+
+/* Amélioration des contrastes pour les liens et boutons */
+[data-theme="dark"] a {
+    color: var(--link-color);
+}
+
+[data-theme="dark"] a:hover {
+    color: var(--link-hover);
+}
+
+/* Style des alertes en mode sombre */
+[data-theme="dark"] .alert {
+    background-color: var(--bg-dark-2);
+    border-color: var(--border-color);
+}
+
+/* Style des badges en mode sombre */
+[data-theme="dark"] .badge {
+    background-color: var(--bg-dark-3);
+    color: var(--text-primary);
+}

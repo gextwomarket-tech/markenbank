@@ -13,6 +13,7 @@
 .auth-split {
     display: flex;
     min-height: 100vh;
+    position: relative;
 }
 
 .auth-image-section {
@@ -21,8 +22,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    overflow-y: auto;
 }
 
 .auth-image-section::before {
@@ -61,17 +66,82 @@
     justify-content: center;
     padding: 2rem;
     background: var(--bg-dark-1);
+    margin-left: 50%;
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 .auth-form-container {
     width: 100%;
     max-width: 450px;
+    padding: 2rem;
+    background: var(--bg-dark-2);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
 }
 
 .auth-logo {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 2rem;
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.auth-subtitle {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.form-floating {
+    margin-bottom: 1.25rem;
+}
+
+.form-floating > .form-control {
+    padding: 1rem;
+    height: calc(3.5rem + 2px);
+    font-size: 1rem;
+    background-color: var(--bg-dark-3);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-floating > label {
+    padding: 1rem;
+    color: var(--text-secondary);
+}
+
+.form-floating > .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-rgb), 0.25);
+}
+
+.auth-submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.auth-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .social-login-btn {
@@ -95,6 +165,40 @@
     align-items: center;
     text-align: center;
     margin: 1.5rem 0;
+}
+
+/* Style pour la notification de copie */
+.copy-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--success);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    animation: slideIn 0.3s ease-out forwards, fadeOut 0.3s ease-out 2.7s forwards;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 .divider::before,
@@ -147,6 +251,53 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <span>Données cryptées</span>
                     <i class="fas fa-key fa-2x"></i>
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="h5 mb-4">Comptes de démonstration</h3>
+                    <div class="demo-accounts">
+                        <!-- Compte Administrateur -->
+                        <div class="glass p-3 rounded-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-danger">Administrateur</span>
+                                <button class="btn btn-sm btn-outline-light" onclick="copyCredentials('admin@markenbank.com', 'password123')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="small text-white-50">
+                                <div>admin@markenbank.com</div>
+                                <div>password123</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Compte Utilisateur 1 -->
+                        <div class="glass p-3 rounded-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary">Utilisateur Premium</span>
+                                <button class="btn btn-sm btn-outline-light" onclick="copyCredentials('jean.dupont@example.com', 'password123')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="small text-white-50">
+                                <div>jean.dupont@example.com</div>
+                                <div>password123</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Compte Utilisateur 2 -->
+                        <div class="glass p-3 rounded-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-success">Utilisateur Standard</span>
+                                <button class="btn btn-sm btn-outline-light" onclick="copyCredentials('marie.martin@example.com', 'password123')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="small text-white-50">
+                                <div>marie.martin@example.com</div>
+                                <div>password123</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

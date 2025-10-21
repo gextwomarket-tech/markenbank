@@ -7,6 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Chart from 'chart.js/auto';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import './theme';
+import './copy-credentials';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);

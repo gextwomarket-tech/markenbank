@@ -5,6 +5,7 @@
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
+@import 'dark-theme.css';
 
 /* Premium Dark Mode - Marken Bank Theme */
 :root {
