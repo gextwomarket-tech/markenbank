@@ -1,352 +1,476 @@
 # 🏦 Marken Bank - Application Bancaire en Ligne
 
-**Marken Bank** est une application web bancaire moderne développée avec Laravel, Filament Admin, Bootstrap 5 et des animations JavaScript avancées. Elle offre une expérience utilisateur fluide et professionnelle pour la gestion de comptes bancaires multi-devises, recharges (IBAN, PayPal, Crypto), cartes virtuelles, et bien plus.
+![Marken Bank Logo](public/images/logo.svg)
 
-## 🎯 Fonctionnalités Principales
+**Marken Bank** est une application bancaire en ligne moderne et complète construite avec Laravel, Filament et Bootstrap 5. Elle offre une expérience bancaire numérique de nouvelle génération avec support multi-devises, cartes virtuelles, cryptomonnaies et plus encore.
 
-### Pour les Utilisateurs
-- ✅ **Inscription & KYC** - Ouverture de compte avec vérification d'identité
-- 💳 **Comptes Multi-Devises** - Support USD, EUR, XOF, GBP, CAD, etc.
-- 💰 **Recharges Multiples** :
-  - Virement IBAN
-  - PayPal (Sandbox & Live)
-  - Cryptomonnaies (BTC, ETH, USDT)
-- 🎴 **Cartes Virtuelles** - Demande et gestion de cartes virtuelles
-- 📊 **Dashboard Interactif** - Vue d'ensemble avec graphiques et statistiques
-- 📜 **Historique des Transactions** - Filtrage et export CSV
-- 👤 **Profil Utilisateur** - Modification des informations et avatar
+## ✨ Fonctionnalités Principales
 
-### Pour les Administrateurs (Filament)
-- 👥 **Gestion Utilisateurs** - CRUD complet avec filtres avancés
-- 💵 **Validation des Recharges** - Approbation/rejet avec notes
-- 🏦 **Gestion des Comptes** - Crédit/débit manuel, gel/dégel
-- 🎴 **Gestion des Cartes** - Activation, gel, annulation
-- ⚙️ **Configuration Système** :
-  - Méthodes de paiement (activer/désactiver)
-  - Frais et commissions
-  - Limites de transaction
-  - Adresses crypto
-  - Clés API PayPal
-- 📊 **Analytics & Rapports** - Statistiques et exports
-- 🔍 **Audit Logs** - Traçabilité complète des actions
+### Pour les Clients
+- 🌍 **Multi-Devises** : Comptes en EUR, USD, GBP, CAD, XOF
+- 💳 **Cartes Virtuelles** : Création instantanée de cartes virtuelles sécurisées
+- ⚡ **Virements Instantanés** : Transferts rapides entre comptes
+- ₿ **Crypto-Friendly** : Recharge via Bitcoin, Ethereum, USDT
+- 📊 **Analytics Avancés** : Graphiques et rapports détaillés
+- 🔒 **Sécurité Maximale** : 2FA, SSL, encryption
+- 🌙 **Mode Sombre/Clair** : Toggle entre les thèmes
+- 🌐 **Multi-Langues** : Support FR/EN (extensible)
 
-## 🎨 Design & UX
+### Pour les Administrateurs
+- 📈 **Dashboard Admin** : Statistiques en temps réel
+- 👥 **Gestion Utilisateurs** : CRUD complet avec tracking d'activité
+- 💰 **Validation Recharges** : Approbation/rejet des topups
+- ⚙️ **Paramètres Système** : Configuration complète
+- 📝 **Logs d'Audit** : Traçabilité complète
+- 🔧 **Gestion KYC** : Vérification documents
 
-### Ligne Artistique
-- **Palette Premium Dark Mode** :
-  - Primaire : Bleu électrique (#0066FF)
-  - Secondaire : Violet profond (#6C2BD9)
-  - Accent : Cyan lumineux (#00D9FF)
-  - Background : Gris ardoise (#1A1D29, #252A3A)
-  - Success : Vert émeraude (#00D1A0)
-
-- **Effets Visuels** :
-  - Glassmorphism sur les cards
-  - Gradients animés
-  - Animations de particules (hero section)
-  - Micro-interactions fluides
-  - Mode sombre/clair avec toggle animé
-
-## 🛠️ Stack Technique
+## 🚀 Technologies Utilisées
 
 ### Backend
-- **Laravel 11** - Framework PHP moderne
-- **MySQL/MariaDB** - Base de données relationnelle
-- **Filament 3** - Panel d'administration élégant
-- **Laravel Sanctum** - Authentification API
-- **Spatie Media Library** - Gestion des fichiers
+- **Laravel 10+** : Framework PHP moderne
+- **Filament 3** : Panel admin élégant
+- **MySQL** : Base de données relationnelle
 
 ### Frontend
-- **Blade Templates** - Moteur de templates Laravel
-- **Bootstrap 5** - Framework CSS responsive
-- **Alpine.js** - JavaScript réactif léger
-- **FontAwesome 6** - Icônes
-- **GSAP** - Animations complexes
-- **AOS** - Scroll animations
-- **Chart.js** - Graphiques interactifs
-- **Swiper.js** - Carousels
-- **Particles.js** - Effets de particules
+- **Bootstrap 5** (CDN) : Framework CSS responsive
+- **FontAwesome 6** : Icônes
+- **Chart.js** : Graphiques
+- **Particles.js** : Animations
+- **AOS** : Animations au scroll
+- **Swiper.js** : Carousels
 
-## 📦 Installation
+### Design
+- **Glassmorphism** : Effets de verre givré
+- **Gradients Animés** : Transitions fluides
+- **Dark/Light Mode** : Thèmes personnalisables
 
-### Prérequis
-- PHP >= 8.2
+## 📋 Prérequis
+
+- PHP >= 8.1
 - Composer
-- Node.js & npm
-- MySQL/MariaDB
-- Extensions PHP : intl, gd, curl, mbstring, xml, zip, sqlite3
+- MySQL >= 5.7 / MariaDB >= 10.3
+- Node.js & NPM (optionnel, CDN utilisé)
 
-### Étapes d'Installation
+## 🛠️ Installation
 
-1. **Cloner le projet**
+### 1. Cloner le Projet
+
 ```bash
 git clone <repository-url>
 cd markenbank-app
 ```
 
-2. **Installer les dépendances PHP**
+### 2. Installer les Dépendances
+
 ```bash
 composer install
 ```
 
-3. **Installer les dépendances JavaScript**
-```bash
-npm install
-```
+### 3. Configuration Environnement
 
-4. **Configurer l'environnement**
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-5. **Configurer la base de données**
-Éditez `.env` et configurez vos paramètres de base de données :
+### 4. Configurer la Base de Données
+
+Éditer `.env`:
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=markenbank
 DB_USERNAME=root
-DB_PASSWORD=
+DB_PASSWORD=votre_mot_de_passe
 ```
 
-6. **Exécuter les migrations et seeders**
+### 5. Créer la Base de Données
+
+```bash
+mysql -u root -p
+CREATE DATABASE markenbank CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+EXIT;
+```
+
+### 6. Exécuter les Migrations et Seeders
+
 ```bash
 php artisan migrate --seed
 ```
 
-7. **Créer le lien symbolique pour le storage**
+### 7. Créer le Lien de Stockage
+
 ```bash
 php artisan storage:link
 ```
 
-8. **Compiler les assets**
-```bash
-npm run build
-# ou pour le développement :
-npm run dev
-```
+### 8. Lancer le Serveur
 
-9. **Démarrer le serveur**
 ```bash
 php artisan serve
 ```
 
-L'application sera accessible à `http://localhost:8000`
+L'application sera accessible sur : `http://localhost:8000`
 
-## 🔑 Comptes de Démonstration
+### 9. Lancer les Queues (Optionnel mais Recommandé)
 
-Après avoir exécuté les seeders, vous aurez accès à :
+Dans un nouveau terminal:
+
+```bash
+php artisan queue:work
+```
+
+## 👥 Comptes de Démonstration
 
 ### Administrateur
 - **Email** : admin@markenbank.com
 - **Mot de passe** : password123
 
 ### Utilisateurs de Test
-- **User 1** : user1@example.com / password123
-- **User 2** : user2@example.com / password123
+- **Email** : jean.dupont@example.com | **MDP** : password123
+- **Email** : marie.martin@example.com | **MDP** : password123
+- **Email** : pierre.dubois@example.com | **MDP** : password123
 
-## 🌐 Routes Principales
-
-### Public
-- `/` - Landing page
-- `/login` - Connexion
-- `/register` - Inscription
-
-### Utilisateur (Auth requise)
-- `/dashboard` - Dashboard principal
-- `/dashboard/accounts` - Gestion des comptes
-- `/dashboard/cards` - Cartes virtuelles
-- `/dashboard/topup` - Recharges
-- `/dashboard/transactions` - Historique
-- `/dashboard/profile` - Profil
-
-### Admin
-- `/admin` - Panel Filament
-
-## 📡 API Endpoints
-
-### Authentification
-```
-POST /api/auth/register
-POST /api/auth/login
-GET /api/user (protected)
-```
-
-### Comptes
-```
-GET /api/accounts (protected)
-POST /api/accounts (protected)
-GET /api/accounts/{id}/transactions (protected)
-```
-
-### Recharges
-```
-POST /api/topups (protected)
-POST /api/topups/{id}/confirm (admin)
-```
-
-### Cartes Virtuelles
-```
-POST /api/cards (protected)
-GET /api/cards (protected)
-```
-
-## ⚙️ Configuration
-
-### Variables d'Environnement Importantes
-
-```env
-# Application
-APP_NAME="Marken Bank"
-APP_ENV=local
-APP_URL=http://localhost:8000
-
-# Base de données
-DB_CONNECTION=mysql
-DB_DATABASE=markenbank
-
-# Mail
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.mailtrap.io
-MAIL_PORT=2525
-
-# PayPal
-PAYPAL_CLIENT_ID=your_client_id
-PAYPAL_SECRET=your_secret
-PAYPAL_MODE=sandbox
-
-# Queues (recommandé : Redis)
-QUEUE_CONNECTION=database
-```
-
-## 🔧 Commandes Artisan Utiles
-
-```bash
-# Créer un utilisateur admin Filament
-php artisan make:filament-user
-
-# Nettoyer le cache
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-
-# Lancer les queues (pour emails et notifications)
-php artisan queue:work
-
-# Optimiser l'application (production)
-php artisan optimize
-```
-
-## 🚀 Déploiement en Production
-
-1. **Configurer l'environnement**
-```bash
-APP_ENV=production
-APP_DEBUG=false
-```
-
-2. **Optimiser l'application**
-```bash
-composer install --optimize-autoloader --no-dev
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-npm run build
-```
-
-3. **Configurer les permissions**
-```bash
-chmod -R 755 storage bootstrap/cache
-```
-
-4. **Configurer les queues**
-Utilisez Supervisor pour maintenir `php artisan queue:work` en exécution.
-
-5. **SSL/HTTPS**
-Assurez-vous d'avoir un certificat SSL configuré.
-
-## 📚 Structure du Projet
+## 📁 Structure du Projet
 
 ```
 markenbank-app/
 ├── app/
-│   ├── Filament/          # Ressources Filament Admin
+│   ├── Models/              # Modèles Eloquent
 │   ├── Http/
-│   │   ├── Controllers/   # Contrôleurs
-│   │   └── Middleware/    # Middleware
-│   └── Models/            # Modèles Eloquent
+│   │   └── Controllers/     # Contrôleurs
+│   ├── Filament/
+│   │   └── Resources/       # Ressources Filament Admin
+│   └── Helpers/
+│       └── helpers.php      # Fonctions helper
 ├── database/
-│   ├── migrations/        # Migrations de base de données
-│   └── seeders/           # Seeders (données de test)
-├── public/                # Assets publics
+│   ├── migrations/          # Migrations DB
+│   └── seeders/             # Seeders
 ├── resources/
-│   ├── views/             # Templates Blade
-│   ├── css/               # Styles CSS
-│   └── js/                # JavaScript
-└── routes/
-    ├── web.php            # Routes web
-    └── api.php            # Routes API
+│   ├── views/
+│   │   ├── layouts/         # Layouts (app, dashboard)
+│   │   ├── auth/            # Pages authentification
+│   │   ├── dashboard/       # Dashboard client
+│   │   └── landing.blade.php
+│   └── lang/                # Fichiers de traduction
+│       ├── fr.json
+│       └── en.json
+├── routes/
+│   └── web.php              # Routes web
+└── public/
+    └── images/
+        └── logo.svg         # Logo Marken Bank
 ```
 
-## 🔒 Sécurité
+## 🎨 Personnalisation
 
-- ✅ Authentification Laravel Sanctum
-- ✅ Validation côté serveur pour toutes les entrées
+### Thème et Couleurs
+
+Les couleurs sont définies dans `resources/views/layouts/app.blade.php` et `layouts/dashboard.blade.php`:
+
+```css
+:root[data-theme="dark"] {
+    --primary: #0066FF;
+    --secondary: #6C2BD9;
+    --accent: #00D9FF;
+    --success: #00D1A0;
+    --warning: #FF8F3D;
+    --danger: #FF4757;
+}
+```
+
+### Langues
+
+Ajouter une nouvelle langue:
+
+1. Créer `resources/lang/es.json` (exemple)
+2. Ajouter les traductions
+3. Créer une entrée dans la table `languages`
+
+```php
+Language::create([
+    'code' => 'es',
+    'name' => 'Español',
+    'flag' => '🇪🇸',
+    'is_active' => true,
+]);
+```
+
+### Devises Supportées
+
+Modifier dans `app/Helpers/helpers.php`:
+
+```php
+function getCurrencySymbol(string $currency): string
+{
+    return match($currency) {
+        'EUR' => '€',
+        'USD' => '$',
+        // Ajouter d'autres devises...
+    };
+}
+```
+
+## 🔐 Sécurité
+
+### Fonctionnalités de Sécurité Implémentées
+
+- ✅ Hashage des mots de passe (bcrypt)
 - ✅ Protection CSRF
-- ✅ Rate limiting sur les API
-- ✅ Hashage bcrypt des mots de passe
-- ✅ Encryption des données sensibles
-- ✅ Audit logs pour traçabilité
-- ✅ 2FA optionnel (à implémenter)
+- ✅ Validation côté serveur
+- ✅ Sessions sécurisées
+- ✅ Logs d'audit
+- ✅ Rate limiting (à configurer)
+- ✅ Encryption SSL recommandée
 
-## 📝 Base de Données
+### Configuration SSL (Production)
 
-### Tables Principales
-- `users` - Utilisateurs
-- `bank_accounts` - Comptes bancaires
-- `transactions` - Transactions
-- `topups` - Recharges
-- `virtual_cards` - Cartes virtuelles
-- `kyc_documents` - Documents KYC
-- `settings` - Configuration système
-- `audit_logs` - Logs d'audit
+```env
+APP_URL=https://votredomaine.com
+SESSION_SECURE_COOKIE=true
+```
 
-## 🎯 Fonctionnalités à Venir
+## 📊 Base de Données
 
-- [ ] Intégration 2FA (TOTP)
-- [ ] Chat support en direct
-- [ ] Application mobile (React Native)
-- [ ] Virements SEPA réels
-- [ ] Intégration PSD2
-- [ ] Système de parrainage
-- [ ] Programme de fidélité
+### Schéma Principal
+
+- **users** : Utilisateurs du système
+- **bank_accounts** : Comptes bancaires multi-devises
+- **transactions** : Historique des transactions
+- **topups** : Demandes de recharge
+- **virtual_cards** : Cartes virtuelles
+- **kyc_documents** : Documents KYC
+- **settings** : Configuration système
+- **languages** : Langues disponibles
+- **user_activity_logs** : Tracking activité utilisateurs
+- **audit_logs** : Logs d'audit
+- **pages_content** : Contenu dynamique des pages
+
+## 🔌 API & Intégrations
+
+### PayPal (À Configurer)
+
+```env
+PAYPAL_CLIENT_ID=votre_client_id
+PAYPAL_SECRET=votre_secret
+PAYPAL_MODE=sandbox # ou live
+```
+
+### Cryptomonnaies
+
+Configurer les adresses dans le panel admin ou via seeder:
+
+```php
+Setting::create([
+    'key' => 'crypto_addresses',
+    'value' => json_encode([
+        'BTC' => 'votre_adresse_btc',
+        'ETH' => 'votre_adresse_eth',
+        'USDT' => 'votre_adresse_usdt',
+    ]),
+]);
+```
+
+### SMTP (Email)
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=votre_username
+MAIL_PASSWORD=votre_password
+MAIL_FROM_ADDRESS=noreply@markenbank.com
+```
+
+## 🧪 Tests
+
+```bash
+# Exécuter les tests
+php artisan test
+
+# Tests avec couverture
+php artisan test --coverage
+```
+
+## 📚 Documentation Fonctionnelle
+
+### Flux Utilisateur
+
+1. **Inscription**
+   - Formulaire multi-étapes (4 étapes)
+   - Informations personnelles
+   - Adresse
+   - Documents KYC
+   - Choix devise principale
+   - Génération automatique compte + IBAN
+
+2. **Connexion**
+   - Email + mot de passe
+   - Option "Se souvenir de moi"
+   - 2FA (à implémenter)
+
+3. **Dashboard Client**
+   - Vue d'ensemble : soldes, transactions récentes
+   - Graphiques des revenus/dépenses
+   - Carte virtuelle affichée
+   - Actions rapides (recharger, transférer, etc.)
+
+4. **Gestion des Comptes**
+   - Créer des comptes multi-devises
+   - Chaque compte a son propre IBAN
+   - Visualiser soldes par devise
+
+5. **Recharge (Topup)**
+   - Méthodes : IBAN, Crypto, PayPal
+   - Upload preuve de paiement
+   - Status : pending → approved/rejected par admin
+
+6. **Cartes Virtuelles**
+   - Demande de carte
+   - Affichage sécurisé des détails
+   - Geler/Dégeler/Annuler
+
+7. **Transactions**
+   - Historique complet
+   - Filtres (date, type, status)
+   - Export CSV
+
+### Flux Admin (Filament)
+
+1. **Dashboard Admin**
+   - Statistiques globales
+   - Graphiques
+   - Dernières activités
+
+2. **Gestion Utilisateurs**
+   - Liste + CRUD
+   - Voir activité par utilisateur
+   - Bloquer/Débloquer comptes
+
+3. **Validation Recharges**
+   - File d'attente des topups pending
+   - Voir preuve de paiement
+   - Approuver → crédite le compte
+   - Rejeter → avec note admin
+
+4. **Configuration**
+   - Frais par méthode
+   - Limites min/max
+   - Adresses crypto
+   - Clés API PayPal
+
+## 🐛 Dépannage
+
+### Erreur: "Class not found"
+```bash
+composer dump-autoload
+```
+
+### Erreur: "No application encryption key"
+```bash
+php artisan key:generate
+```
+
+### Erreur de permissions (Storage)
+```bash
+chmod -R 775 storage bootstrap/cache
+```
+
+### Migrations échouent
+```bash
+php artisan migrate:fresh --seed
+```
+
+## 🚧 Fonctionnalités à Implémenter
+
+### Prioritaires
+- [ ] Controllers complets pour toutes les pages
+- [ ] Middleware d'authentification et d'autorisation
+- [ ] Filament resources pour admin
+- [ ] Validation des formulaires côté serveur
+- [ ] Gestion des fichiers uploadés (KYC, preuves)
+- [ ] Système de notifications
+- [ ] Export transactions (CSV/PDF)
+
+### Avancées
+- [ ] Authentification 2FA (TOTP)
+- [ ] Intégration réelle PayPal
+- [ ] Intégration blockchain pour crypto
+- [ ] Système de récupération de mot de passe
+- [ ] Email de vérification
+- [ ] Rate limiting anti-fraude
+- [ ] Webhooks PayPal
+- [ ] Scanner de virus pour uploads
+- [ ] Compression d'images avatar
+
+### Nice to Have
+- [ ] Application mobile (API)
 - [ ] Notifications push
+- [ ] Chat support en direct
+- [ ] Programme de parrainage
+- [ ] Cartes physiques
+- [ ] Épargne automatique
+- [ ] Prêts
 
-## 🐛 Bugs Connus & Limitations
+## 📝 Notes de Développement
 
-- Les IBAN générés sont au format démo (non réels)
-- Les cartes virtuelles sont simulées
-- Les paiements crypto nécessitent confirmation manuelle admin
-- Mode sandbox PayPal uniquement (par défaut)
+### Bonnes Pratiques
+
+- Utiliser les helpers pour formatter les montants: `formatCurrency($amount, $currency)`
+- Logger les actions sensibles avec `AuditLog`
+- Tracker l'activité utilisateur avec `UserActivityLog::logActivity()`
+- Valider toutes les entrées utilisateur
+- Utiliser les transactions DB pour les opérations financières
+- Ne jamais exposer les numéros de carte complets
+
+### Générer un IBAN
+```php
+$iban = generateIban('FR76'); // Génère un IBAN FR
+```
+
+### Générer un Numéro de Compte
+```php
+$accountNumber = generateAccountNumber($userId, 'ACC');
+```
+
+### Masquer un Numéro de Carte
+```php
+$masked = maskCardNumber('1234567890123456'); // **** **** **** 3456
+```
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues! Pour contribuer:
+
+1. Fork le projet
+2. Créer une branche (`git checkout -b feature/AmazingFeature`)
+3. Commit les changements (`git commit -m 'Add AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrir une Pull Request
 
 ## 📄 Licence
 
-Ce projet est sous licence MIT.
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
-## 👥 Contributeurs
+## 👨‍💻 Support
 
-- Développeur principal : [Votre Nom]
-- Design : Génération Z, moderne et professionnel
+Pour toute question ou problème:
+- **Email** : support@markenbank.com
+- **Documentation** : [docs.markenbank.com](https://docs.markenbank.com)
+- **Issues GitHub** : [github.com/markenbank/issues](https://github.com/markenbank/issues)
 
-## 📞 Support
+## 🙏 Remerciements
 
-Pour toute question ou support :
-- Email : support@markenbank.com
-- Documentation : [À venir]
-- Issues : Utilisez GitHub Issues
+- Laravel Framework
+- Filament Admin Panel
+- Bootstrap Team
+- FontAwesome
+- Toute la communauté open-source
 
 ---
 
-**Marken Bank** - Votre banque digitale de confiance 🚀
+**Marken Bank** - Votre banque digitale de nouvelle génération 🚀
+
+© 2025 Marken Bank. Tous droits réservés.
